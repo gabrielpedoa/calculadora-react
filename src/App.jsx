@@ -11,9 +11,13 @@ const App = () => {
 
   const operators = ["+", "-", "=", "C", ",", "x"];
   const handleCalculator = (value) => {
-     if(operators.includes(value)){
-        if(result[length -1]){}
-     }
+    if (operators.includes(value)) {
+      if (operators.includes(result[result.length - 1] || result.length === 0)) return;
+      console.log(result.length);
+      setResult((r) => (r += value));
+    } else {
+      setResult((r) => (r += value));
+    }
   };
 
   return (
