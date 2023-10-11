@@ -7,16 +7,17 @@ import { ButtonsContainer } from "./styles/ButtonsContainer";
 import { Visor } from "./components/Visor";
 
 const App = () => {
-  const [result, setResult] = useState("");
+  const [visor, setVisor] = useState("");
 
   const operators = ["+", "-", "=", "C", ",", "x"];
   const handleCalculator = (value) => {
-    if (operators.includes(value)) {
-      if (operators.includes(result[result.length - 1] || result.length === 0)) return;
-      console.log(result.length);
-      setResult((r) => (r += value));
+    if (operators.includes(value)) {  
+      if (operators.includes(visor[visor.length - 1]) ) return
+      if (visor.includes(operators)) return;
+      console.log(visor.length)
+      setVisor((result) => (result += value));
     } else {
-      setResult((r) => (r += value));
+      setVisor((result) => (result += value));
     }
   };
 
@@ -26,7 +27,7 @@ const App = () => {
       <ButtonsBox>
         <h1>Calculadora Gabriel</h1>
         <CalculadorContainer>
-          <Visor value={result} />
+          <Visor value={visor} />
           <ButtonsContainer>
             <Button action={handleCalculator} value={7} />
             <Button action={handleCalculator} value={8} />
