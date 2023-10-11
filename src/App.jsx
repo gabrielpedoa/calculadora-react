@@ -7,25 +7,47 @@ import { ButtonsContainer } from "./styles/ButtonsContainer";
 import { Visor } from "./components/Visor";
 
 const App = () => {
-  const [visor, setVisor] = useState("");
+  const [visor, setVisor] = useState([]);
+  const operators = ["+", "-", "=", ".", "x", "/"];
 
-  const operators = ["+", "-", "=", "C", ",", "x"];
   const handleCalculator = (value) => {
-    if (operators.includes(value)) {  
-      if (operators.includes(visor[visor.length - 1]) ) return
-      if (visor.includes(operators)) return;
-      console.log(visor.length)
+    if (operators.includes(value)) {
+      if (operators.includes(visor[visor.length - 1]) || visor.includes(value))
+        return;
       setVisor((result) => (result += value));
     } else {
       setVisor((result) => (result += value));
     }
   };
 
+  const handleClear = () => {
+    setVisor((result) => (result = ""));
+  };
+
+  const handleMath = (value) => {
+    switch (operators.includes(value)) {
+      case "+":
+        console.log(setVisor((value) => Number(value + value)));
+        break;
+      case "-":
+        console.log(setVisor((value) => Number(value - value)));
+        break;
+      case "*":
+        console.log(setVisor((value) => Number(value * value)));
+        break;
+      case "/":
+        console.log(setVisor((value) => Number(value / value)));
+        break;
+
+        default:
+          console.log('deu errado');
+    }
+  };
   return (
     <React.Fragment>
       <Global />
       <ButtonsBox>
-        <h1>Calculadora Gabriel</h1>
+        <h1></h1>
         <CalculadorContainer>
           <Visor value={visor} />
           <ButtonsContainer>
@@ -41,10 +63,10 @@ const App = () => {
             <Button action={handleCalculator} value={2} />
             <Button action={handleCalculator} value={3} />
             <Button action={handleCalculator} value={"+"} />
-            <Button action={handleCalculator} value={"C"} />
+            <Button action={handleClear} value={"C"} />
             <Button action={handleCalculator} value={0} />
-            <Button action={handleCalculator} value={","} />
-            <Button action={handleCalculator} value={"="} />
+            <Button action={handleCalculator} value={"."} />
+            <Button action={handleMath} value={"="} />
           </ButtonsContainer>
         </CalculadorContainer>
       </ButtonsBox>
