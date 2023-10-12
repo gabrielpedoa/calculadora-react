@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { Box } from "@mui/material";
+import styled from "styled-components";
+
 
 export const ButtonsBox = styled(Box)`
   background-color: #130f1f;

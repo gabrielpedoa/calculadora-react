@@ -10,4 +10,9 @@ export const ButtonStyles = styled.button`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+   #equal{
+    width: 100%;
+   }
 `
+
