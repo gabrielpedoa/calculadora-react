@@ -7,10 +7,15 @@ import { ButtonsContainer } from "./styles/ButtonsContainer";
 import { Visor } from "./components/Visor";
 import { evaluate } from "mathjs";
 
-
 const op = ["+", "-", "/", "*"];
-const App = () => {
 
+const actions = {
+  "+": (v1, v2) => v1 + v2,
+  "-": (v1, v2) => v1 - v2,
+  "/": (v1, v2) => v1 / v2,
+  "*": (v1, v2) => v1 * v2,
+};
+const App = () => {
   const [visor, setVisor] = useState("");
 
   const isOperator = (value) => {
@@ -29,12 +34,14 @@ const App = () => {
   };
 
   const handleMath = () => {
-    if (visor) {
-      setVisor(evaluate(visor));
-    } else {
-      alert("Digite um numero");
-    }
+    console.log(visor.split(""));
+    const operator = visor.split("").filter((i) => isNaN(Number(i)))[0];
+    const [v1, v2] = visor.split(operator);
+    const act = actions[operator];
+    setVisor(()=> act(Number(v1), Number(v2)));
+    console.log(visor);
   };
+
   return (
     <React.Fragment>
       <Global />
