@@ -7,17 +7,20 @@ import { ButtonsContainer } from "./styles/ButtonsContainer";
 import { Visor } from "./components/Visor";
 import { evaluate } from "mathjs";
 
+
+const op = ["+", "-", "/", "*"];
 const App = () => {
+
   const [visor, setVisor] = useState("");
 
   const isOperator = (value) => {
     if (isNaN(value) && value != "." && value != "=") {
-      if(visor.includes(visor.length)) return
+      for (const i of op) {
+        if (visor.includes(i)) return;
+      }
       setVisor((result) => (result += value));
-      console.log("operador");
     } else {
       setVisor((result) => (result += value));
-      console.log("numero");
     }
   };
 
@@ -28,9 +31,8 @@ const App = () => {
   const handleMath = () => {
     if (visor) {
       setVisor(evaluate(visor));
-    } 
-    else {
-      alert('Digite um numero')
+    } else {
+      alert("Digite um numero");
     }
   };
   return (
@@ -57,7 +59,7 @@ const App = () => {
             <Button action={isOperator} value={0} />
             <Button action={isOperator} value={"."} />
             <Button action={isOperator} value={"/"} />
-            <Button style={{width: '100%'}} action={handleMath} value={"="} />
+            <Button style={{ width: "100%" }} action={handleMath} value={"="} />
           </ButtonsContainer>
         </CalculadorContainer>
       </ButtonsBox>
